@@ -5,20 +5,23 @@
         </h2>
     </x-slot>
 
-<!--     <div class="pt-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">Create Client</h2>
-                </div>
-            </div> 
-        </div>
-    </div> -->
+
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white">
+
+                    @if(session('success'))
+                    <div class="bg-green-200 px-6 py-4 mx-2 my-4 rounded-md text-lg flex items-center mx-auto w-3/4 xl:w-2/4">
+                      <svg viewBox="0 0 24 24" class="text-green-600 w-5 h-5 sm:w-5 sm:h-5 mr-3" >
+                        <path fill="currentColor" d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z" ></path>
+                      </svg>
+                      <span class="text-green-800">{{ __('User account has been successfully created') }}</span>
+                    </div>
+                    @endif
+
+
                     <form method="post">
                         @csrf
                         <h3 class="font-bold leading-5 text-gray-600 sm:text-xl sm:truncate">Login Credentials</h3>
@@ -78,24 +81,6 @@
                             <label for="phone" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Phone*</label>
                             <input name="phone" type="text" value="{{ old('phone') }}" class="text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2">
                             @error('phone')
-                            <span class="text-xs text-red-400">{{ $message }}</span>
-                            @enderror
-                            </div>
-                        </div>
-                        <hr class="my-6">
-                        <h3 class="font-bold leading-5 text-gray-600 sm:text-xl sm:truncate">Services</h3>
-                        <div class="flex space-x-4 py-3">
-                            <div class="flex-1">
-                            <label for="contract_number" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Contract Number*</label>
-                            <input name="contract_number" type="text" value="{{ old('contract_number') }}" class="text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2">
-                            @error('contract_number')
-                            <span class="text-xs text-red-400">{{ $message }}</span>
-                            @enderror
-                            </div>
-                            <div class="flex-1">
-                            <label for="services" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">Services</label>
-                            <input name="services" type="text" value="{{ old('services') }}" class="text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2">
-                            @error('services')
                             <span class="text-xs text-red-400">{{ $message }}</span>
                             @enderror
                             </div>
