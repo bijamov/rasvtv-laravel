@@ -11,6 +11,11 @@ class dashboardController extends Controller
 {
     public function redirect()
     {
+        if (! Auth::check())
+        {
+            return redirect(route('login'));
+        }
+
     	if (Auth::User()->isUser())
     	{
     		return redirect(route('user_dashboard'));
