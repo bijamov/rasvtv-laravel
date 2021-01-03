@@ -22,6 +22,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', 'App\Http\Controllers\dashboardController@redirect')->name('dashboard');
 
+Route::get('/logout', 'App\Http\Controllers\dashboardController@logout')->name('logout');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +57,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::middleware('admin')->group(function () {
+Route::middleware('user')->prefix('user')->group(function () {
     
 	Route::get('/user_dashboard', function () {
 	    return view('user_dashboard');
