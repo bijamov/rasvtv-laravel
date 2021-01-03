@@ -7,6 +7,10 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,6 +32,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        $userId = Client::Where('username', $request->email)->value('user_id');
+
+        if ($userId)
+        {
+            if (Hash::check($request->password, User::find($userId)->password))
+            {   
+                Auth::loginUsingId($userId);
+                $request->session()->regenerate();
+                return redirect(RouteServiceProvider::HOME);
+            }
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
