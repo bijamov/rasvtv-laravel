@@ -22,6 +22,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', 'App\Http\Controllers\dashboardController@redirect')->name('dashboard');
 
+Route::get('/logout', 'App\Http\Controllers\dashboardController@logout')->name('logout');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +32,18 @@ Route::get('/dashboard', 'App\Http\Controllers\dashboardController@redirect')->n
 |--------------------------------------------------------------------------
 |
 */
-Route::middleware('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
     
     Route::get('/admin_dashboard', function () {
         return view('admin_dashboard');
     })->name('admin_dashboard');
 
+
+    Route::get('create_client', function () {
+        return view('admin.create_client');
+    })->name('create_client_view');
+
+    Route::post('create_client', 'App\Http\Controllers\clientController@create')->name('create_client');
 
 });
 /*
@@ -48,7 +57,7 @@ Route::middleware('admin')->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::middleware('admin')->group(function () {
+Route::middleware('user')->prefix('user')->group(function () {
     
 	Route::get('/user_dashboard', function () {
 	    return view('user_dashboard');
