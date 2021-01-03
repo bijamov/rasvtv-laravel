@@ -22,7 +22,13 @@
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('create_client_view')" :active="request()->routeIs('create_client_view')">
+                        <x-nav-link :href="route('clients_list')" :active="request()->routeIs('clients_list')">
+                            {{ __('Clients List') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('create_client')" :active="request()->routeIs('create_client')">
                             {{ __('Create Client') }}
                         </x-nav-link>
                     </div>

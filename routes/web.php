@@ -39,11 +39,13 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     })->name('admin_dashboard');
 
 
-    Route::get('create_client', function () {
-        return view('admin.create_client');
-    })->name('create_client_view');
+    Route::get('create_client', 'App\Http\Controllers\clientController@index')->name('create_client');
 
-    Route::post('create_client', 'App\Http\Controllers\clientController@create')->name('create_client');
+    Route::post('create_client', 'App\Http\Controllers\clientController@create');
+
+    Route::get('clients', 'App\Http\Controllers\clientsListController@index')->name('clients_list');
+
+    Route::post('clients', 'App\Http\Controllers\clientsListController@ajax')->name('clients_list');
 
 });
 /*

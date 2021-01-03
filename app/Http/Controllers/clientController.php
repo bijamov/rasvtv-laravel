@@ -41,8 +41,10 @@ class clientController extends Controller
         $C_entry->save();
 
         return redirect(route('create_client'))->with('success', ' ');
+    }
 
-
-
+    public function index()
+    {
+        return view('admin.create_client');
     }
 }
