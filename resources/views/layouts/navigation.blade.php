@@ -10,12 +10,38 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+            <!--|--------------------------------------------------------------------------
+                | Admin Nav Here
+                |--------------------------------------------------------------------------
+                |-->
+                @if(Auth::user()->role == 'admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('admin_dashboard')" :active="request()->routeIs('admin_dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('create_client_view')" :active="request()->routeIs('create_client_view')">
+                            {{ __('Create Client') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+
+            <!--|--------------------------------------------------------------------------
+                | User Nav Here
+                |--------------------------------------------------------------------------
+                |-->
+                @if(Auth::user()->role == 'user')
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('user_dashboard')" :active="request()->routeIs('user_dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    </div>
+
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
